@@ -20,7 +20,7 @@ class SoundExampleViewController: UIViewController {
             fortuneWheel.configuration = .soundExampleConfiguration
             fortuneWheel.slices = slices
             
-            fortuneWheel.impactFeedbackOn = true
+            fortuneWheel.selectionFeedbackOn = true
             
             fortuneWheel.onEdgeCollision = { progress in
                 print("edge collision progress: \(String(describing: progress))")
@@ -66,7 +66,7 @@ class SoundExampleViewController: UIViewController {
     }
     
     @IBAction func impactFeedbackValueChanged(_ sender: UISwitch) {
-        fortuneWheel.impactFeedbackOn = impactFeedbackSwitch.isOn
+        fortuneWheel.selectionFeedbackOn = impactFeedbackSwitch.isOn
     }
     
     @IBAction func soundEffectTypeValueChanged(_ sender: UISegmentedControl) {

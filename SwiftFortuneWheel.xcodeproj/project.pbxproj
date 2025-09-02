@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1018C6E12E66E3A600C210D9 /* SelectionFeedbackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1018C6E02E66E3A500C210D9 /* SelectionFeedbackable.swift */; };
 		2703B4F4248E204E00FB50F9 /* SFWConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2703B4F3248E204E00FB50F9 /* SFWConfiguration.swift */; };
 		270550A6255D4F9F008D331B /* MockSliceCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270550A2255D4F76008D331B /* MockSliceCalculation.swift */; };
 		270550AC255D501E008D331B /* MockWheelMathCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270550AB255D501E008D331B /* MockWheelMathCalculation.swift */; };
@@ -80,6 +81,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1018C6E02E66E3A500C210D9 /* SelectionFeedbackable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionFeedbackable.swift; sourceTree = "<group>"; };
 		2703B4F3248E204E00FB50F9 /* SFWConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFWConfiguration.swift; sourceTree = "<group>"; };
 		270550A2255D4F76008D331B /* MockSliceCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSliceCalculation.swift; sourceTree = "<group>"; };
 		270550AB255D501E008D331B /* MockWheelMathCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWheelMathCalculation.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				27A57421253EB46D00B060FF /* AudioPlayerManager.swift */,
 				27E291BF2550300800486B6D /* AudioPlayable.swift */,
 				27E291C32550309200486B6D /* ImpactFeedbackable.swift */,
+				1018C6E02E66E3A500C210D9 /* SelectionFeedbackable.swift */,
 				2789BDF1290B294000B7F535 /* AudioPersistencing.swift */,
 			);
 			path = Audio;
@@ -542,6 +545,7 @@
 			files = (
 				274AD34125A4824E00DAD942 /* CGPoint+Math.swift in Sources */,
 				277FCC70251DC3F600CC6590 /* CAAnimationGroup+Builder.swift in Sources */,
+				1018C6E12E66E3A600C210D9 /* SelectionFeedbackable.swift in Sources */,
 				27A5742E253EB81200B060FF /* SynchronizedDictionary.swift in Sources */,
 				27105685248D4C93006C0181 /* WheelView.swift in Sources */,
 				27105678248D4C93006C0181 /* SliceCalculating.swift in Sources */,

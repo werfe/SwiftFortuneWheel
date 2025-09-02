@@ -35,9 +35,9 @@ public class SwiftFortuneWheel: SFWControl {
     }
     
     #if os(iOS)
-    public var impactFeedbackOn: Bool = false {
+    public var selectionFeedbackOn: Bool = false {
         didSet {
-            prepareImpactFeedbackIfNeeded()
+            prepareSelectionFeedbackIfNeeded()
         }
     }
     #endif
@@ -126,15 +126,15 @@ public class SwiftFortuneWheel: SFWControl {
     private(set) lazy var audioPlayerManager = AudioPlayerManager()
     
 #if os(iOS)
-   private(set) var storedImpactFeedbackGenerator: Any?
+   private(set) var storedSelectionFeedbackGenerator: Any?
    @available(iOS 10.0, iOSApplicationExtension 10.0, *)
-   var impactFeedbackgenerator: UIImpactFeedbackGenerator {
-       if let generator = storedImpactFeedbackGenerator as? UIImpactFeedbackGenerator {
+   var selectionFeedbackgenerator: UISelectionFeedbackGenerator {
+       if let generator = storedSelectionFeedbackGenerator as? UISelectionFeedbackGenerator {
            return generator
        }
        
-       let generator = UIImpactFeedbackGenerator(style: .light)
-       storedImpactFeedbackGenerator = generator
+       let generator = UISelectionFeedbackGenerator()
+       storedSelectionFeedbackGenerator = generator
        return generator
    }
    #endif
@@ -349,19 +349,19 @@ extension SwiftFortuneWheel: SliceCalculating {}
 // MARK: - Audio and Impack Feedback Support
 
 #if os(iOS)
-extension SwiftFortuneWheel: ImpactFeedbackable {
+extension SwiftFortuneWheel: SelectionFeedbackable {
     
     /// Impacts feedback if needed
     /// - Parameter type: Collision type
-    fileprivate func impactFeedbackIfNeeded(for type: CollisionType) {
+    fileprivate func selectionFeedbackIfNeeded(for type: CollisionType) {
         switch type {
         case .edge:
             if edgeCollisionDetectionOn {
-                impactFeedback()
+                selectionFeedback()
             }
         case .center:
             if centerCollisionDetectionOn {
-                impactFeedback()
+                selectionFeedback()
             }
         }
     }
@@ -372,7 +372,7 @@ extension SwiftFortuneWheel: AudioPlayable {
     
     /// Impacts feedback and sound if needed
     /// - Parameter type: Collision type
-    fileprivate func impactIfNeeded(for type: CollisionType) {
+    fileprivate func selectionIfNeeded(for type: CollisionType) {
         
         #if !os(macOS)
         pinImageViewAnimator.movePinIfNeeded(collisionEffect: self.pinImageViewCollisionEffect, position: self.configuration?.pinPreferences?.position)
@@ -381,7 +381,7 @@ extension SwiftFortuneWheel: AudioPlayable {
         playSoundIfNeeded(type: type)
         
         #if os(iOS)
-        impactFeedbackIfNeeded(for: type)
+        selectionFeedbackIfNeeded(for: type)
         #endif
     }
 }
@@ -452,11 +452,11 @@ public extension SwiftFortuneWheel {
         
         DispatchQueue.main.async {
             self.stopRotation()
-            self.animator.addRotationAnimation(fullRotationsCount: fullRotationsCount, animationDuration: animationDuration, rotationOffset: rotationOffset, completionBlock: completion, onEdgeCollision: { [weak self] progress in                        self?.impactIfNeeded(for: .edge)
+            self.animator.addRotationAnimation(fullRotationsCount: fullRotationsCount, animationDuration: animationDuration, rotationOffset: rotationOffset, completionBlock: completion, onEdgeCollision: { [weak self] progress in                        self?.selectionIfNeeded(for: .edge)
                 self?.onEdgeCollision?(progress)
             })
             { [weak self] (progress) in
-                self?.impactIfNeeded(for: .center)
+                self?.selectionIfNeeded(for: .center)
                 self?.onCenterCollision?(progress)
             }
         }
@@ -520,11 +520,11 @@ public extension SwiftFortuneWheel {
     func startContinuousRotationAnimation(with speed: CGFloat = 4) {
         self.stopRotation()
         self.animator.addIndefiniteRotationAnimation(speed: speed, onEdgeCollision: { [weak self] progress in
-            self?.impactIfNeeded(for: .edge)
+            self?.selectionIfNeeded(for: .edge)
             self?.onEdgeCollision?(progress)
         })
         { [weak self] (progress) in
-            self?.impactIfNeeded(for: .center)
+            self?.selectionIfNeeded(for: .center)
             self?.onCenterCollision?(progress)
         }
     }
